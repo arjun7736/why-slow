@@ -2,7 +2,6 @@
 
 A zero-config, high-performance Express middleware to profile slow API requests. It gives you a beautiful breakdown of where your time is being spent: **Database**, **External HTTP calls**, **Middleware**, and **App Logic**.
 
-![Sample Output](https://raw.githubusercontent.com/Arjun/why-slow/main/assets/sample.png)
 
 ## Features
 
