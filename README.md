@@ -1,4 +1,4 @@
-# why-slow 🚀
+# why-api-slow 🚀
 
 A zero-config, high-performance Express middleware to profile slow API requests. It gives you a beautiful breakdown of where your time is being spent: **Database**, **External HTTP calls**, **Middleware**, and **App Logic**.
 
@@ -15,7 +15,7 @@ A zero-config, high-performance Express middleware to profile slow API requests.
 ## Installation
 
 ```bash
-npm install why-slow
+npm install why-api-slow
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ Just register the middleware at the top of your Express app.
 
 ```javascript
 import express from 'express';
-import { whySlow } from 'why-slow';
+import { whySlow } from 'why-api-slow';
 
 const app = express();
 
@@ -44,7 +44,7 @@ app.get('/test', async (req, res) => {
 To track DB queries, use the `addEvent` function. You can wrap your DB driver's query method.
 
 ```javascript
-import { addEvent } from 'why-slow';
+import { addEvent } from 'why-api-slow';
 
 async function query(sql) {
   const start = Date.now();
@@ -64,7 +64,7 @@ async function query(sql) {
 If you want to know exactly how long a specific middleware takes:
 
 ```javascript
-import { trackMiddleware } from 'why-slow';
+import { trackMiddleware } from 'why-api-slow';
 
 app.use(trackMiddleware(someSlowAuthMiddleware));
 ```
