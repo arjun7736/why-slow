@@ -1,0 +1,48 @@
+{
+  "name": "why-slow",
+  "version": "1.0.0",
+  "description": "A high-performance Express middleware to profile slow API requests (DB, External HTTP, and App Logic) with zero configuration.",
+  "license": "MIT",
+  "author": "Arjun",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "test": "tsx watch src/test/test-server.ts",
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "express": ">=4.0.0"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.0.0",
+    "express": "^5.2.1",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  },
+  "keywords": [
+    "express",
+    "middleware",
+    "performance",
+    "profiler",
+    "slow-requests",
+    "tracing",
+    "monitoring",
+    "debug"
+  ]
+}
