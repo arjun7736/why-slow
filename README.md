@@ -7,7 +7,8 @@ A zero-config, high-performance Express middleware to profile slow API requests.
 
 - 🛠 **Zero Config**: Just `app.use(whySlow())` and it works.
 - 🌐 **Auto-Patching**: Automatically tracks all `globalThis.fetch` calls.
-- 🗄 **DB Tracking**: Record custom events (like DB queries) easily.
+- 🗄 **Auto DB Tracking**: Automatically tracks MongoDB native driver and Mongoose queries.
+- ✍️ **Custom DB Tracking**: Record custom events (like SQL or unsupported drivers) easily.
 - 🧠 **Smart Analysis**: Detects repeated DB queries automatically.
 - 🎨 **Beautiful UI**: Color-coded terminal reports using Chalk.
 - 📦 **Lightweight**: Minimal overhead using Node's `AsyncLocalStorage`.
@@ -40,8 +41,21 @@ app.get('/test', async (req, res) => {
 });
 ```
 
-### 2. Tracking Database Queries
-To track DB queries, use the `addEvent` function. You can wrap your DB driver's query method.
+### 2. Automatic DB Tracking (MongoDB + Mongoose)
+If your app uses the MongoDB native driver (`mongodb`) or Mongoose (`mongoose`),
+`whySlow()` auto-patches common query methods. No manual DB instrumentation required.
+
+```javascript
+import express from 'express';
+import mongoose from 'mongoose';
+import { whySlow } from 'why-api-slow';
+
+const app = express();
+app.use(whySlow()); // MongoDB/Mongoose DB calls are tracked automatically
+```
+
+### 3. Tracking Unsupported DB Drivers
+For SQL drivers or any unsupported ORM, use `addEvent`.
 
 ```javascript
 import { addEvent } from 'why-api-slow';
@@ -60,7 +74,7 @@ async function query(sql) {
 }
 ```
 
-### 3. Tracking Specific Middlewares
+### 4. Tracking Specific Middlewares
 If you want to know exactly how long a specific middleware takes:
 
 ```javascript

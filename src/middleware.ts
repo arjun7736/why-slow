@@ -2,6 +2,7 @@ import type { Request, Response, NextFunction } from "express";
 import { store, addEvent } from "./store";
 import { printReport } from "./printer";
 import { patchFetch } from "./patches/fetch";
+import { patchDbClients } from "./patches/db";
 
 /**
  * Main middleware — automatically patches globalThis.fetch on first call.
@@ -10,6 +11,7 @@ import { patchFetch } from "./patches/fetch";
 export function whySlow() {
   // Patch fetch once when the middleware is registered
   patchFetch();
+  patchDbClients();
 
   return (req: Request, res: Response, next: NextFunction) => {
     const start = Date.now();
