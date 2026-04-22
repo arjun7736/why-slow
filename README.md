@@ -1,6 +1,6 @@
 # why-api-slow 🚀
 
-A zero-config, high-performance Express middleware to profile slow API requests. It gives you a beautiful breakdown of where your time is being spent: **Database**, **External HTTP calls**, **Middleware**, and **App Logic**.
+A zero-config, high-performance Express middleware to profile slow API requests. It gives you a beautiful breakdown of where your time is being spent: **Database**, **External HTTP calls**, **Middleware**, and **App Logic**.  **(it is first build and test it on your own risk)**
 
 
 ## Features
