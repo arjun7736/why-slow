@@ -7,8 +7,8 @@ A zero-config, high-performance Express middleware to profile slow API requests.
 
 - 🛠 **Zero Config**: Just `app.use(whySlow())` and it works.
 - 🌐 **Auto-Patching**: Automatically tracks all `globalThis.fetch` calls.
-- 🗄 **Auto DB Tracking**: Automatically tracks MongoDB native driver and Mongoose queries.
-- ✍️ **Custom DB Tracking**: Record custom events (like SQL or unsupported drivers) easily.
+- 🗄 **Auto DB Tracking**: Automatically tracks MongoDB native, Mongoose, and common SQL variants.
+- ✍️ **Custom DB Tracking**: Record custom events for unsupported drivers easily.
 - 🧠 **Smart Analysis**: Detects repeated DB queries automatically.
 - 🎨 **Beautiful UI**: Color-coded terminal reports using Chalk.
 - 📦 **Lightweight**: Minimal overhead using Node's `AsyncLocalStorage`.
@@ -41,9 +41,17 @@ app.get('/test', async (req, res) => {
 });
 ```
 
-### 2. Automatic DB Tracking (MongoDB + Mongoose)
+### 2. Automatic DB Tracking (MongoDB + Mongoose + SQL)
 If your app uses the MongoDB native driver (`mongodb`) or Mongoose (`mongoose`),
 `whySlow()` auto-patches common query methods. No manual DB instrumentation required.
+
+Supported SQL variants (auto-detected when installed):
+- `pg`
+- `mysql`
+- `mysql2`
+- `sequelize`
+- `knex`
+- `typeorm`
 
 ```javascript
 import express from 'express';
@@ -51,11 +59,11 @@ import mongoose from 'mongoose';
 import { whySlow } from 'why-api-slow';
 
 const app = express();
-app.use(whySlow()); // MongoDB/Mongoose DB calls are tracked automatically
+app.use(whySlow()); // MongoDB/Mongoose/SQL DB calls are tracked automatically
 ```
 
 ### 3. Tracking Unsupported DB Drivers
-For SQL drivers or any unsupported ORM, use `addEvent`.
+For unsupported DB drivers or custom DB layers, use `addEvent`.
 
 ```javascript
 import { addEvent } from 'why-api-slow';
