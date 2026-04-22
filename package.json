@@ -1,6 +1,6 @@
 {
   "name": "why-api-slow",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A high-performance Express middleware to profile slow API requests (DB, External HTTP, and App Logic) with zero configuration. (initial build not completed testing)",
   "license": "MIT",
   "author": "Arjun",
