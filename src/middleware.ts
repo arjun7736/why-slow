@@ -1,8 +1,8 @@
 import type { Request, Response, NextFunction } from "express";
-import { store, addEvent } from "./store";
-import { printReport } from "./printer";
-import { patchFetch } from "./patches/fetch";
-import { patchDbClients } from "./patches/db";
+import { store, addEvent } from "./store.js";
+import { printReport } from "./printer.js";
+import { patchFetch } from "./patches/fetch.js";
+import { patchDbClients } from "./patches/db.js";
 
 /**
  * Main middleware — automatically patches globalThis.fetch on first call.
@@ -15,7 +15,7 @@ export function whySlow() {
 
   return (req: Request, res: Response, next: NextFunction) => {
     const start = Date.now();
-    const ctx = { timeline: [] as import("./types").TimelineEvent[], startTime: start };
+    const ctx = { timeline: [] as import("./types.js").TimelineEvent[], startTime: start };
 
     // Capture ctx directly to ensure the report prints even if AsyncLocalStorage
     // context is lost when the 'finish' event fires.

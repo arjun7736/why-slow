@@ -1,4 +1,4 @@
-import { addEvent } from "../store";
+import { addEvent } from "../store.js";
 
 let patched = false;
 

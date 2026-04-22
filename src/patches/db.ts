@@ -1,5 +1,5 @@
 import { createRequire } from "node:module";
-import { addEvent } from "../store";
+import { addEvent } from "../store.js";
 
 const localRequire = createRequire(import.meta.url);
 const WRAPPED = Symbol.for("whySlow.wrapped");

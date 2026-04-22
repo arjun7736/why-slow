@@ -1,6 +1,6 @@
 import chalk from "chalk";
-import { getDbStats, getHttpStats } from "./store";
-import type { TimelineEvent } from "./types";
+import { getDbStats, getHttpStats } from "./store.js";
+import type { TimelineEvent } from "./types.js";
 
 function line() {
   return chalk.gray("─".repeat(50));

@@ -1,5 +1,5 @@
 import express from "express";
-import { whySlow, addEvent } from "../index";
+import { whySlow, addEvent } from "../index.js";
 
 const app = express();
 

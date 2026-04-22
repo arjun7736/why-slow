@@ -1,5 +1,5 @@
 import { AsyncLocalStorage } from "node:async_hooks";
-import type { RequestContext, TimelineEvent } from "./types";
+import type { RequestContext, TimelineEvent } from "./types.js";
 
 export const store = new AsyncLocalStorage<RequestContext>();
 
