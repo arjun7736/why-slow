@@ -5,21 +5,29 @@
   "license": "MIT",
   "author": "Arjun",
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
   "files": [
     "dist",
     "README.md"
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
     }
   },
   "scripts": {
     "test": "tsx watch src/test/test-server.ts",
-    "build": "tsc",
+    "clean": "rm -rf dist",
+    "build:esm": "tsc -p tsconfig.build.esm.json",
+    "build:cjs": "tsc -p tsconfig.build.cjs.json",
+    "build:types": "tsc -p tsconfig.build.types.json",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs && npm run build:types && npm run build:post",
+    "build:post": "printf '{\"type\":\"commonjs\"}\\n' > dist/cjs/package.json",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {

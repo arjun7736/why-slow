@@ -1,7 +1,14 @@
 import { createRequire } from "node:module";
 import { addEvent } from "../store.js";
 
-const localRequire = createRequire(import.meta.url);
+function getImportMetaUrl() {
+  return Function("return import.meta.url")() as string;
+}
+
+const localRequire: NodeRequire =
+  typeof require === "function"
+    ? require
+    : createRequire(getImportMetaUrl());
 const WRAPPED = Symbol.for("whySlow.wrapped");
 
 let patched = false;
